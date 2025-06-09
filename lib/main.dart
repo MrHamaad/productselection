@@ -12,6 +12,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         useMaterial3: false,
+        textTheme: TextTheme(
+          titleMedium: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w800,
+              shadows: [
+                Shadow(
+                  color: Colors.red,
+                  offset: Offset(1, 1)
+                ),
+              ]
+          ),
+          displayMedium: TextStyle(
+            fontSize: 20
+          )
+        )
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -54,7 +69,12 @@ class _ProductSelectionState extends State<ProductSelection> {
       children: [
         Align(
             alignment: Alignment.topLeft,
-            child: Text("Choose a Category.")),
+            child: FittedBox(
+              child: Text(
+                  "Choose a Category.",
+                  style: Theme.of(context).textTheme.titleMedium,
+              ),
+            )),
         const SizedBox(height: 10,),
         Container(
           width: double.infinity,
@@ -65,11 +85,12 @@ class _ProductSelectionState extends State<ProductSelection> {
           ),
           child: DropdownButtonHideUnderline(
             child: DropdownButton(
+
               isExpanded: true,
                 items: items.map((item)=>
                    DropdownMenuItem(
                     value: item,
-                    child: Text(item),
+                    child: Text(item,style: Theme.of(context).textTheme.displayMedium,),
                 )
                 ).toList(),
                 value: _selectedCategory,
