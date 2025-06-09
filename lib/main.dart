@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.green,
         useMaterial3: false,
@@ -51,20 +52,34 @@ class _ProductSelectionState extends State<ProductSelection> {
       ),
       child: Column(
       children: [
-        Text("Choose a Category."),
-        DropdownButton(
-            items: items.map((item)=>
-               DropdownMenuItem(
-                value: item,
-                child: Text(item),
-            )
-            ).toList(),
-            value: _selectedCategory,
-            onChanged: (String? category){
-              setState(() {
-                _selectedCategory = category;
-              });
-        }),
+        Align(
+            alignment: Alignment.topLeft,
+            child: Text("Choose a Category.")),
+        const SizedBox(height: 10,),
+        Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton(
+              isExpanded: true,
+                items: items.map((item)=>
+                   DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                )
+                ).toList(),
+                value: _selectedCategory,
+                onChanged: (String? category){
+                  setState(() {
+                    _selectedCategory = category;
+                  });
+            }),
+          ),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
