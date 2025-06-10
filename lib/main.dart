@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mypractice/Screens/selection.dart';
 
 void main()=>runApp(MyApp());
 
@@ -36,95 +37,10 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
           elevation: 5,
         ),
-        body: ProductSelection(),
+        body: SelectionScreen(),
       ),
     );
   }
 }
 
-class ProductSelection extends StatefulWidget {
-  const ProductSelection({super.key});
 
-  @override
-  State<ProductSelection> createState() => _ProductSelectionState();
-}
-
-class _ProductSelectionState extends State<ProductSelection> {
-  String? _selectedCategory = "Electronics";
-  final List<String> items = [
-    "Electronics",
-    "Books",
-    "Clothing"
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      padding: EdgeInsetsGeometry.all(10),
-      decoration: BoxDecoration(
-        color: Colors.blueGrey,
-      ),
-      child: Column(
-      children: [
-        Align(
-            alignment: Alignment.topLeft,
-            child: FittedBox(
-              child: Text(
-                  "Choose a Category.",
-                  style: Theme.of(context).textTheme.titleMedium,
-              ),
-            )),
-        const SizedBox(height: 10,),
-        Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton(
-
-              isExpanded: true,
-                items: items.map((item)=>
-                   DropdownMenuItem(
-                    value: item,
-                    child: Text(item,style: Theme.of(context).textTheme.displayMedium,),
-                )
-                ).toList(),
-                value: _selectedCategory,
-                onChanged: (String? category){
-                  setState(() {
-                    _selectedCategory = category;
-                  });
-            }),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white
-                ),
-                onPressed: (){},
-                child: Text("View Detail")
-            ),
-            const SizedBox(width: 5,),
-            OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white
-                ),
-                onPressed: (){},
-                child: Text("Buy Now")
-            ),
-          ],
-        )
-      ],
-      )
-    );
-  }
-}
