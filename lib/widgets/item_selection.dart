@@ -87,7 +87,7 @@ class _ItemSelectionState extends State<ItemSelection> {
   }
 
   void _showItemDetail(BuildContext context, Map<String, dynamic> item) {
-    Scaffold.of(context).openEndDrawer();
+    // Scaffold.of(context).openEndDrawer();
     Navigator.of(context).push(
       PageRouteBuilder(
         opaque: false,
@@ -99,7 +99,7 @@ class _ItemSelectionState extends State<ItemSelection> {
   }
 
   void _buyItem(BuildContext context, Map<String, dynamic> item) {
-    Scaffold.of(context).openEndDrawer();
+    // Scaffold.of(context).openEndDrawer();
     Navigator.of(context).push(
       PageRouteBuilder(
         opaque: false,

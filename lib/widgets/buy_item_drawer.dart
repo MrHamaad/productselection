@@ -143,7 +143,7 @@ class BuyItemDrawer extends StatelessWidget {
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () => Navigator.of(context).pop(),
                       child: Text(
                         "Cancel",
                         style: TextStyle(
@@ -164,8 +164,8 @@ class BuyItemDrawer extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
                       onPressed: () {
+                        Navigator.of(context).pop();
                         onPurchaseComplete();
-                        Navigator.pop(context);
                       },
                       child: const Text(
                         "Confirm",
