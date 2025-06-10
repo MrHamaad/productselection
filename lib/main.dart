@@ -15,17 +15,18 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
         textTheme: TextTheme(
           titleMedium: TextStyle(
-              fontSize: 25,
+              fontSize: 20,
               fontWeight: FontWeight.w800,
               shadows: [
                 Shadow(
                   color: Colors.red,
-                  offset: Offset(1, 1)
+                  offset: Offset(0.5 , 0.5)
                 ),
               ]
           ),
           displayMedium: TextStyle(
-            fontSize: 20
+            fontSize: 15,
+            fontWeight: FontWeight.w800
           )
         )
       ),
