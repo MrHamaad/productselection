@@ -59,26 +59,30 @@ class _ItemSelectionState extends State<ItemSelection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
+            Expanded(
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: _selectedItem == null ? null : () {
+                  _showItemDetail(context, _selectedItem!);
+                },
+                child: const Text("View Detail"),
               ),
-              onPressed: _selectedItem == null ? null : () {
-                _showItemDetail(context, _selectedItem!);
-              },
-              child: const Text("View Detail"),
             ),
             const SizedBox(width: 5),
-            OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
+            Expanded(
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: _selectedItem == null ? null : () {
+                  _buyItem(context, _selectedItem!);
+                },
+                child: const Text("Buy Now"),
               ),
-              onPressed: _selectedItem == null ? null : () {
-                _buyItem(context, _selectedItem!);
-              },
-              child: const Text("Buy Now"),
             ),
           ],
         ),

@@ -39,8 +39,8 @@ class MyApp extends StatelessWidget {
           elevation: 5,
         ),
         body: SelectionScreen(),
-        endDrawer: Drawer(), // This is a placeholder, actual drawer will be opened via methods
-        endDrawerEnableOpenDragGesture: false, // Disable swipe to open
+        // endDrawer: Drawer(), // This is a placeholder, actual drawer will be opened via methods
+        // endDrawerEnableOpenDragGesture: false, // Disable swipe to open
       ),
     );
   }
