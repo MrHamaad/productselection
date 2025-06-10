@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'buy_item_drawer.dart';
+import 'item_detail_drawer.dart';
 
 class ItemSelection extends StatefulWidget {
   final List<Map<String, dynamic>> items;
@@ -29,7 +30,7 @@ class _ItemSelectionState extends State<ItemSelection> {
         const SizedBox(height: 10),
         Container(
           width: double.infinity,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -86,33 +87,40 @@ class _ItemSelectionState extends State<ItemSelection> {
   }
 
   void _showItemDetail(BuildContext context, Map<String, dynamic> item) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(item["name"]),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("\$${item["price"].toStringAsFixed(2)}", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 10),
-            Text(item["description"]),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text("Close"),
-          ),
-        ],
+    Scaffold.of(context).openEndDrawer();
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (BuildContext context, _, __) {
+          return ItemDetailDrawer(item: item);
+        },
       ),
     );
   }
 
   void _buyItem(BuildContext context, Map<String, dynamic> item) {
-    // Implement your buy logic here
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Purchased ${item["name"]} for \$${item["price"].toStringAsFixed(2)}")),
+    Scaffold.of(context).openEndDrawer();
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (BuildContext context, _, __) {
+          return BuyItemDrawer(
+            item: item,
+            onPurchaseComplete: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Purchased ${item["name"]} for \$${item["price"].toStringAsFixed(2)}"),
+                  backgroundColor: Colors.green,
+                  behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
